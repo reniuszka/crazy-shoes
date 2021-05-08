@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="scss/style.css" />
+    <title>Shoes website</title>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container spacing">
+        <h1 class="primary-title">Amazing shoes at an amazing price</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+          deserunt ipsum tenetur natus! Sapiente, voluptates.
+        </p>
+        <a href="#" class="btn">See what we have</a>
+      </div>
+    </header>
+    <!-- section.featured+section.our-products -->
+
+    <main>
+      <section class="featured">
+        <div class="container">
+          <h2 class="second-title">Featured products</h2>
+
+          <div class="split">
+            <!-- a.featured__item*3>img.featured__img+p.featured__details -- inside of ich a we add img withgh class and p with class -->
+            <a href="#" class="featured__item">
+              <img src="img/shoe-5.png" alt="" class="featured__img" />
+              <p class="featured__details">
+                <span class="price">$99</span>shoe name
+              </p>
+            </a>
+            <a href="#" class="featured__item">
+              <img src="img/shoe-1.png" alt="" class="featured__img" />
+              <p class="featured__details">
+                <span class="price">$99</span>shoe name
+              </p>
+            </a>
+            <a href="#" class="featured__item">
+              <img src="img/shoe-3.png" alt="" class="featured__img" />
+              <p class="featured__details">
+                <span class="price">$99</span>shoe name
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="our-products">
+        <div class="container">
+          <h2 class="second-title">Our products</h2>
+          <!-- article.product*3>img.product__image+h3.product__title+p.product__description+a.btn -->
+          <article class="product shoe-red spacing">
+            <img src="img/shoe-6.png" alt="" class="product__image" />
+            <h3 class="product__title">A really great nice shoe</h3>
+            <p class="product__description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              molestiae perspiciatis, error amet nisi, nesciunt autem magni
+              dolores nemo voluptatum ducimus architecto laudantium assumenda
+              beatae veritatis temporibus? Nemo, consequatur earum.
+            </p>
+            <a href="#" class="btn">check it</a>
+          </article>
+          <article class="product shoe-white shoe-left spacing">
+            <img src="img/shoe-2.png" alt="" class="product__image" />
+            <h3 class="product__title">A really great nice shoe</h3>
+            <p class="product__description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              molestiae perspiciatis, error amet nisi, nesciunt autem magni
+              dolores nemo voluptatum ducimus architecto laudantium assumenda
+              beatae veritatis temporibus? Nemo, consequatur earum.
+            </p>
+            <a href="#" class="btn">check it</a>
+          </article>
+          <article class="product shoe-blue spacing">
+            <img src="img/shoe-4.png" alt="" class="product__image" />
+            <h3 class="product__title">A really great nice shoe</h3>
+            <p class="product__description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+              molestiae perspiciatis, error amet nisi, nesciunt autem magni
+              dolores nemo voluptatum ducimus architecto laudantium assumenda
+              beatae veritatis temporibus? Nemo, consequatur earum.
+            </p>
+            <a href="#" class="btn">check it</a>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

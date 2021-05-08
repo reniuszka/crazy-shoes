@@ -1,0 +1,246 @@
+// GENERAL RESET
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Mobile first
+// REUSEABLE CLASSES
+// to center it and not touch the sides
+.container {
+  width: 85%;
+  max-width: 65em;
+  //   65*16 = 1040px
+  margin: 0 auto;
+}
+
+section {
+  padding: 7em 0;
+}
+
+.split {
+  display: flex;
+  //   works in flexbox too yay
+  gap: 2em;
+  flex-wrap: wrap;
+  //   puts in the middle
+  justify-content: center;
+
+  //   all direct children of my split .split > * - one item takes 30% of the div, but then we add min-width:  so in mobile version it will be column and in big screen in row;
+  & > * {
+    flex-basis: 30%;
+    //     15*16px = 240px
+    min-width: 15em;
+  }
+}
+// spacing doesnt do anything but direct children will do
+// any element that is a json sibling or comes after another sibling is the direct children of spacing
+// it wont give spacing to h1 as it doesnt have a sibling before
+.spacing > * + * {
+  // if spacer doesnt work, give 2 rem
+  margin-top: var(--spacer, 2rem);
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  //   for fonts use rem
+  font-size: 1.125rem;
+  padding: 0.5em 1.25em;
+  color: var(--clr-text, #fff);
+  background: var(--clr-accent, blue);
+  border-radius: 0.25em;
+  //   1s = 1000ms
+  transition: transform 0.25s ease-in, opacity 0.25s linear;
+  outline: none;
+  border: none;
+}
+
+.btn:hover,
+.btn:focus {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.primary-title {
+  //   if browser doesnt support clamp
+  font-size: 4rem;
+  // calc() CSS function lets you perform calculations when specifying CSS property values
+  // nables selecting a middle value within a range of values between a defined minimum and maximum. It takes three parameters: a minimum value, a preferred value, and a maximum allowed value.
+  font-size: clamp(3rem, calc(5vw +1rem), 4.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.second-title {
+  text-align: center;
+  font-size: clamp(2.5rem, calc(5vw +1rem), 4rem);
+  line-height: 1;
+  color: #17353d;
+  margin-bottom: 5rem;
+}
+
+.hero {
+  color: #fff;
+  text-align: center;
+  padding: 15em 0;
+  //   if supports doesnt work the bwroser will put #222 background
+  background: #222;
+  //   query support if the web doesnt support whe background blend-mode the it skips it. this property  sets how an element's background images should blend with each other and with the element's background color.
+
+  //   @supports(property: value )
+  @supports (background-blend-mode: multiply) {
+    background: url(../img/shoe-3.png), radial-gradient(#444, #111);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.featured {
+  background: #eee;
+  &__item {
+    display: block;
+    position: relative;
+    transform: scale(0.85);
+    transition: transform 0.25s ease-in-out;
+
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+
+    // thanks to hover and focus our z-index -1 works here and doesnt go behind the background, coz it got stuck on level __item
+    &:hover,
+    &:focus {
+      transform: scale(1);
+      // when I hover the price will show up
+      .featured__details {
+        opacity: 1;
+      }
+    }
+
+    //     pseudo element, remeber to add content empty
+    &::after {
+      content: '';
+      position: absolute;
+      //       top: 0;
+      //       left: 0;
+      top: 10%;
+      left: 10%;
+
+      // margin and padding in % are based of a parent's width. we want to create a perfect circle behind the shoe so going to add padding 100% to the top and to the left
+      //       padding: 100% 100% 0 0;
+      padding: 75% 75% 0 0;
+      border-radius: 50%;
+      background: #2193b0;
+      z-index: -1;
+    }
+  }
+
+  &__details {
+    opacity: 0;
+    text-shadow: 0 0 3em rgba($color: #fff, $alpha: 1);
+
+    transition: opacity 0.25s linear;
+    span {
+      //     price is on only line now thanks to block
+      display: block;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+  }
+}
+// here we set that color inside is our color inner, and second is outer and then we can use it as 'component', if those colors dont exist, it will use green and purple, but for shoe-red we use red and oranged :) we declare on the product
+.product {
+  background: radial-gradient(
+    var(--clr-inner, green),
+    var(--clr-outer, purple)
+  );
+  padding: 3em;
+  margin-bottom: 6em;
+  border-radius: 1em;
+  text-align: center;
+
+  &__title {
+    font-size: clamp(3rem, calc(5vw + 1rem), 5.5rem);
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+  }
+
+  &__image {
+    margin: -5em 0 0 0;
+  }
+
+  @media (min-width: 45em) {
+    text-align: left;
+    margin-bottom: 9em;
+
+    &__title {
+      margin: 0;
+    }
+
+    &__image {
+      float: right;
+      width: 65%;
+      margin: 0 -5rem 0 0;
+      //       outline: 2px solid red;
+      //       it created a circle on the object where the text cant be showns on the photo (1h 5 min)
+      //       shape-outside: circle(30%);
+
+      // we can do it with url too, so the text is wrapping exactly around our shoe!
+      shape-outside: url(../img/shoe-6.png);
+      shape-margin: 1em;
+    }
+
+    &.shoe-left {
+      .product__image {
+        shape-outside: url(../img/shoe-2.png);
+        float: left;
+        margin: 0 0 0 -5em;
+        shape-margin: 2em;
+      }
+    }
+  }
+}
+
+// reassign the colors
+
+.hero {
+  --clr-accent: #faa700;
+}
+.shoe-red {
+  --clr-inner: red;
+  --clr-outer: orange;
+}
+
+.shoe-blue {
+  --clr-inner: gray;
+  --clr-outer: yellow;
+}
+
+.shoe-white {
+  --clr-inner: blue;
+  --clr-outer: white;
+
+  //   changing the color of btn!
+  --clr-accent: red;
+}
